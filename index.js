@@ -1,13 +1,10 @@
 export default class {
-    /**
-     * 事件 callback 集合
-     */
-    callbackSet = {};
 
     /**
      * @param {Array} events 传入一个事件名称数组，用于初始化支持的事件
      */
     constructor(events) {
+        this.callbackSet = {}; // 事件 callback 集合
         events.forEach(type => this.callbackSet[type] = []);
     }
 
