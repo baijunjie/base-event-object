@@ -65,14 +65,16 @@ export default class {
 
         } else if (typeStr === 'string') {
             if (this.callbackSet[type]) {
-                cbSet = {};
-                cbSet[type] = this.callbackSet[type];
+                cbSet = {
+                    [type]: this.callbackSet[type]
+                };
             } else {
                 return;
             }
 
             if (callback === undefined) {
                 cbSet[type].length = 0;
+                return;
             }
         } else {
             return;
