@@ -8,5 +8,13 @@
   },
   "author": "Junjie.Bai",
   "license": "MIT",
-  "files": []
+  "files": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baijunjie/base-event-object.git"
+  },
+  "bugs": {
+    "url": "https://github.com/baijunjie/base-event-object/issues"
+  },
+  "homepage": "https://github.com/baijunjie/base-event-object#readme"
 }
