@@ -21,17 +21,41 @@ $ yarn add base-event-object
 import BaseEventObject from 'base-event-object';
 
 // Pass in an array of event names for initializing the supported events
-const eventer = new BaseEventObject(['ready', 'change']);
+const eventObject = new BaseEventObject(['ready', 'change']);
 
 const handle = (...args) => {};
 
-let listener = eventer.on('ready', handle); // Add 'ready' listener
+let listener = eventObject.on('ready', handle); // Add 'ready' listener
 listener.remove(); // Remove 'ready' listener
 // or
-eventer.off('ready', handle); // Remove 'ready' listener
+eventObject.off('ready', handle); // Remove 'ready' listener
 
-eventer.off('ready'); // Remove all 'ready' listener
-eventer.off(); // Remove all listener
+eventObject.off('ready'); // Remove all 'ready' listener
+eventObject.off(); // Remove all listener
 
-eventer.emit('ready', ...args); // Emit 'ready' event
+eventObject.emit('ready', ...args); // Emit 'ready' event
 ```
+
+
+
+## Inheritance
+
+ES6
+
+```js
+class EventObject extends BaseEventObject {
+    constructor() {
+        super('change');
+    }
+}
+const eventObject = new EventObject();
+```
+
+ES5
+
+```js
+function EventObject () {}
+EventObject.prototype = new BaseEventObject(['change']);
+const eventObject = new EventObject();
+```
+
