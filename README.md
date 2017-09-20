@@ -45,7 +45,7 @@ ES6
 ```js
 class EventObject extends BaseEventObject {
     constructor() {
-        super('change');
+        super(['change']);
     }
 }
 const eventObject = new EventObject();
