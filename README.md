@@ -21,19 +21,42 @@ $ yarn add base-event-object
 import BaseEventObject from 'base-event-object';
 
 // Pass in an array of event names for initializing the supported events
-const eventObject = new BaseEventObject(['ready', 'change']);
+const eventObject = new BaseEventObject(['change']);
 
-const handle = (...args) => {};
+const handle = (e, ...args) => {};
 
-let listener = eventObject.on('ready', handle); // Add 'ready' listener
-listener.remove(); // Remove 'ready' listener
+let listener = eventObject.on('change', handle); // Add 'change' listener
+
+listener.remove(); // Remove 'change' listener
 // or
-eventObject.off('ready', handle); // Remove 'ready' listener
+eventObject.off('ready', handle); // Remove 'change' listener
 
-eventObject.off('ready'); // Remove all 'ready' listener
+eventObject.off('ready'); // Remove all 'change' listener
 eventObject.off(); // Remove all listener
 
-eventObject.emit('ready', ...args); // Emit 'ready' event
+eventObject.emit('change', ...args); // Emit 'change' event
+```
+
+
+
+## More usage
+
+```js
+const eventObject = new BaseEventObject({
+    // Every time the emit will trigger the event
+    events: ['change'],
+  
+    // One-off event
+    onceEvents: ['ready']
+});
+
+eventObject.once('change', e => {}); // The handler will only execute once
+
+eventObject.emit('ready');
+eventObject.on('ready', e => {}); // It will be implemented immediately
+
+// Register multiple event listeners simultaneously
+eventObject.on('ready change', e => {});
 ```
 
 
