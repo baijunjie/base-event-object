@@ -13,7 +13,7 @@ export default class {
                 console.warn('Arguments is empty array, this instance cannot support any event!');
             }
         } else {
-            throw new Error('Arguments is not a array');
+            throw new Error('Arguments is not a array.');
         }
     }
 
@@ -33,7 +33,10 @@ export default class {
      * @returns {Function|Undefined} If the registration is successful, an anti-registration function is returned, which can be called to cancel the listener.
      */
     on(type, callback) {
-        if (!this._callbackSet[type]) return;
+        if (!this._callbackSet[type]) {
+            throw new Error('The event type does not exist.');
+            return;
+        }
 
         let cbArr = this._callbackSet[type];
 
