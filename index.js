@@ -42,7 +42,6 @@ export default class {
             options = { events: options };
         } else if (typeof options !== 'object') {
             throw new Error('Invalid parameter.');
-            return;
         }
 
         if (typeof options.events === 'string') {
@@ -56,7 +55,6 @@ export default class {
             });
         } else {
             throw new Error('Invalid parameter.');
-            return;
         }
 
         if (typeof options.onceEvents === 'string') {
@@ -82,7 +80,6 @@ export default class {
     on(type, callback, once) {
         if (typeof type !== 'string') {
             throw new Error('The event type must be a string.');
-            return noop;
         }
 
         const removeArr = [];
@@ -90,8 +87,8 @@ export default class {
         type.split(' ').forEach(type => {
             const remove = on.call(this, type, callback);
             if (!remove) return;
-            this._onceCallbackMap[type].set(callback, remove);
             removeArr.push(remove);
+            once && this._onceCallbackMap[type].set(callback, remove);
         });
 
         return function() {
@@ -130,11 +127,11 @@ export default class {
      * Performs the callback of the specified event type.
      * And pass the second parameter and subsequent parameters to callback.
      * @param type {String} Event type.
+     * @param args {*}      Event parameters.
      */
     emit(type, ...args) {
         if (!this._callbackMap[type]) {
             throw new Error(`Event type "${type}" does not exist.`);
-            return;
         }
 
         const callbackArray = this._callbackMap[type].concat();
@@ -159,12 +156,10 @@ export default class {
 function on(type, callback) {
     if (!this._callbackMap[type]) {
         throw new Error(`Event type "${type}" does not exist.`);
-        return;
     }
 
     if (typeof callback !== 'function') {
         throw new Error('Missing event handler.');
-        return;
     }
 
     if (this._onceEvents[type] && typeof callback === 'function') {
@@ -189,10 +184,9 @@ function on(type, callback) {
 function off(type, callback) {
     const typeStr = typeof type;
     let callbackMap;
-    let callbackArray;
 
     if (typeStr === 'undefined') {
-        for (callbackArray of Object.values(this._callbackMap)) {
+        for (let callbackArray of Object.values(this._callbackMap)) {
             callbackArray.length = 0;
         }
         return;
@@ -219,7 +213,7 @@ function off(type, callback) {
     }
 
     let index;
-    for (callbackArray of Object.values(callbackMap)) {
+    for (let callbackArray of Object.values(callbackMap)) {
         index = callbackArray.indexOf(callback);
         if (index >= 0) {
             callbackArray.splice(index, 1);
@@ -230,5 +224,3 @@ function off(type, callback) {
 function isArray(arr) {
     return Object.prototype.toString.call(arr) === '[object Array]';
 }
-
-function noop() {}

@@ -89,7 +89,7 @@ const eventObject = new EventObject(['change']);
 ## Extend
 
 ```js
-const customObject = {};
+const customObject = new CustomObject();
 const eventObject = new BaseEventObject(['change']);
 Object.assign(customObject, eventObject);
 ```
