@@ -1,6 +1,6 @@
 {
   "name": "base-event-object",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Base Event Object",
   "main": "index.js",
   "scripts": {

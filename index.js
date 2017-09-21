@@ -1,10 +1,11 @@
 export default class {
     /**
-     * @param options {Object}
+     * @param events {String|Array|Object} Single event name, or event name array, or event option.
+     * If it is an event option, it contains two optional attributes:
      * - events     : Pass in an array of event names for initializing the supported events.
      * - onceEvents : Pass in an array of event names for initializing the supported once events.
      */
-    constructor(options) {
+    constructor(events) {
         Object.defineProperties(this, {
             _onceEvents: {
                 value: {},
@@ -36,11 +37,15 @@ export default class {
             }
         });
 
-        if (typeof options === 'string') {
-            options = { events: [options] };
-        } else if (isArray(options)) {
-            options = { events: options };
-        } else if (typeof options !== 'object') {
+        let options;
+
+        if (typeof events === 'string') {
+            options = { events: [events] };
+        } else if (isArray(events)) {
+            options = { events: events };
+        } else if (typeof events === 'object') {
+            options = events;
+        } else {
             throw new Error('Invalid parameter.');
         }
 
@@ -63,7 +68,7 @@ export default class {
 
         if (isArray(options.onceEvents)) {
             options.onceEvents.forEach(type => {
-                this._onceEvents[type] = false;
+                this._onceEvents[type] = null;
                 this._callbackMap[type] = [];
                 this._onceCallbackMap[type] = new Map();
             });
@@ -136,8 +141,8 @@ export default class {
 
         const callbackArray = this._callbackMap[type].concat();
 
-        if (this._onceEvents[type] === false) {
-            this._onceEvents[type] = true;
+        if (this._onceEvents[type] === null) {
+            this._onceEvents[type] = args;
             this._callbackMap[type].length = 0;
         }
 
@@ -162,8 +167,8 @@ function on(type, callback) {
         throw new Error('Missing event handler.');
     }
 
-    if (this._onceEvents[type] && typeof callback === 'function') {
-        callback.call(this, { type });
+    if (this._onceEvents[type]) {
+        callback.call(this, { type }, ...this._onceEvents[type]);
         return;
     }
 
