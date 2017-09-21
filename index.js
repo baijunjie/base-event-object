@@ -1,4 +1,4 @@
-export default class BaseEventObject {
+export default class {
     /**
      * @param options {Object}
      * - events     : Pass in an array of event names for initializing the supported events.
