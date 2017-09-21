@@ -1,13 +1,40 @@
-export default class {
+export default class BaseEventObject {
     /**
      * @param options {Object}
      * - events     : Pass in an array of event names for initializing the supported events.
      * - onceEvents : Pass in an array of event names for initializing the supported once events.
      */
     constructor(options) {
-        this._onceEvents = {};
-        this._callbackMap = {};
-        this._onceCallbackMap = {};
+        Object.defineProperties(this, {
+            _onceEvents: {
+                value: {},
+                enumerable: false
+            },
+            _callbackMap: {
+                value: {},
+                enumerable: false
+            },
+            _onceCallbackMap: {
+                value: {},
+                enumerable: false
+            },
+            once: {
+                value: this.once.bind(this),
+                enumerable: true
+            },
+            on: {
+                value: this.on.bind(this),
+                enumerable: true
+            },
+            off: {
+                value: this.off.bind(this),
+                enumerable: true
+            },
+            emit: {
+                value: this.emit.bind(this),
+                enumerable: true
+            }
+        });
 
         if (typeof options === 'string') {
             options = { events: [options] };

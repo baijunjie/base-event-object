@@ -61,24 +61,36 @@ eventObject.on('ready change', e => {});
 
 
 
-## Inheritance
+## Inherit
 
 ES6
 
 ```js
 class EventObject extends BaseEventObject {
-    constructor() {
-        super(['change']);
+    constructor(options) {
+        super(options);
     }
 }
-const eventObject = new EventObject();
+const eventObject = new EventObject(['change']);
 ```
 
 ES5
 
 ```js
-function EventObject () {}
-EventObject.prototype = new BaseEventObject(['change']);
-const eventObject = new EventObject();
+function EventObject (options) {
+    BaseEventObject.call(this, options);
+}
+EventObject.prototype = Object.create(BaseEventObject.prototype);
+const eventObject = new EventObject(['change']);
+```
+
+
+
+## Extend
+
+```js
+const customObject = {};
+const eventObject = new BaseEventObject(['change']);
+Object.assign(customObject, eventObject);
 ```
 
