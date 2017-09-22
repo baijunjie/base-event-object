@@ -40,7 +40,7 @@ export default class {
         let options;
 
         if (typeof events === 'string') {
-            options = { events: [events] };
+            options = { events: events.split(' ') };
         } else if (isArray(events)) {
             options = { events: events };
         } else if (typeof events === 'object') {
@@ -63,7 +63,7 @@ export default class {
         }
 
         if (typeof options.onceEvents === 'string') {
-            options.onceEvents = [options.onceEvents];
+            options.onceEvents = options.onceEvents.split(' ');
         }
 
         if (isArray(options.onceEvents)) {

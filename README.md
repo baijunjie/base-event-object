@@ -111,14 +111,15 @@ Each property is an array containing supported event names.
 - onceEvents : Emit only once, and the event will be executed immediately after each registration.
 
 ```js
-new BaseEventObject('change');
+new BaseEventObject('ready change');
 // or
-new BaseEventObject(['change']);
+new BaseEventObject(['ready', 'change']);
 // Is equivalent to
-new BaseEventObject({ events: ['change'] });
+new BaseEventObject({ events: ['ready', 'change'] });
 ```
 
 
 
+## License
 
-
+MIT
