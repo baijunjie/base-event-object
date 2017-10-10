@@ -156,7 +156,7 @@ export default class {
             }
         });
     }
-}
+};
 
 function on(type, callback) {
     if (!this._callbackMap[type]) {

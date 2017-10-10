@@ -1,10 +1,11 @@
 {
   "name": "base-event-object",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Base Event Object",
-  "main": "index.js",
+  "main": "dist/BaseEventObject.js",
+  "module": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --config webpack/webpack.config.prod.js"
   },
   "author": "Junjie.Bai",
   "license": "MIT",
@@ -16,5 +17,19 @@
   "bugs": {
     "url": "https://github.com/baijunjie/base-event-object/issues"
   },
-  "homepage": "https://github.com/baijunjie/base-event-object#readme"
+  "homepage": "https://github.com/baijunjie/base-event-object#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "html-webpack-plugin": "^2.29.0",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.0"
+  }
 }
