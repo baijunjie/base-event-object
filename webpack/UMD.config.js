@@ -1,3 +1,4 @@
+'use strict'
 module.exports = {
     'base-event-object': {
         commonjs: 'base-event-object',
