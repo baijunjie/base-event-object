@@ -30,7 +30,7 @@ module.exports = {
                 ],
                 plugins: [
                     // 这个插件可以兼容一些ES6新增特性，但是也会增加代码体积，慎用
-                    'transform-runtime',
+                    // 'transform-runtime',
 
                     // 以下两个插件的作用是
                     // export default 导出的 ES6 模块被 babel 转义成 UMD 模块后

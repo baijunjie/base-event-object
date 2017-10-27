@@ -1,3 +1,5 @@
+import Map from './Map';
+
 export default class {
     /**
      * @param events {String|Array|Object} Single event name, or event name array, or event option.
@@ -150,8 +152,9 @@ export default class {
 
         callbackArray.forEach(cb => {
             cb.call(this, { type }, ...args);
-            if (onceCallbackMap.has(cb)) {
-                onceCallbackMap.get(cb)();
+            const remove = onceCallbackMap.get(cb);
+            if (remove) {
+                remove();
                 onceCallbackMap.delete(cb);
             }
         });
