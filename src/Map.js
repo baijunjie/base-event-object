@@ -3,36 +3,36 @@ export default class {
         this._value = [];
     }
 
-    has(obj) {
-        return this._value.some(item => item[0] === obj);
+    has(key) {
+        return this._value.some(item => item.key === key);
     }
 
-    set(obj, value) {
+    set(key, value) {
         if (!this._value.some(item => {
-            if (item[0] === obj) {
-                item[1] = value;
+            if (item.key === key) {
+                item.value = value;
                 return true;
             }
         })) {
-            this._value.push([obj, value]);
+            this._value.push({ key, value });
         }
         return this;
     }
 
-    get(obj) {
+    get(key) {
         let value;
         this._value.some(item => {
-            if (item[0] === obj) {
-                value = item[1];
+            if (item.key === key) {
+                value = item.value;
                 return true;
             }
         });
         return value;
     }
 
-    delete(obj) {
+    delete(key) {
         this._value.some((item, index) => {
-            if (item[0] === obj) {
+            if (item.key === key) {
                 this._value.splice(index, 1);
                 return true;
             }

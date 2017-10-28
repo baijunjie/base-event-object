@@ -1,6 +1,6 @@
 /*!
  * BaseEventObject - Base Event Object
- * @version v0.3.7
+ * @version v0.3.9
  * @author Junjie.Bai
  * @license MIT
  * 
@@ -143,31 +143,31 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
         _createClass(_class, [{
             key: "has",
-            value: function has(obj) {
+            value: function has(key) {
                 return this._value.some(function (item) {
-                    return item[0] === obj;
+                    return item.key === key;
                 });
             }
         }, {
             key: "set",
-            value: function set(obj, value) {
+            value: function set(key, value) {
                 if (!this._value.some(function (item) {
-                    if (item[0] === obj) {
-                        item[1] = value;
+                    if (item.key === key) {
+                        item.value = value;
                         return true;
                     }
                 })) {
-                    this._value.push([obj, value]);
+                    this._value.push({ key: key, value: value });
                 }
                 return this;
             }
         }, {
             key: "get",
-            value: function get(obj) {
+            value: function get(key) {
                 var value = void 0;
                 this._value.some(function (item) {
-                    if (item[0] === obj) {
-                        value = item[1];
+                    if (item.key === key) {
+                        value = item.value;
                         return true;
                     }
                 });
@@ -175,11 +175,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
             }
         }, {
             key: "delete",
-            value: function _delete(obj) {
+            value: function _delete(key) {
                 var _this = this;
 
                 this._value.some(function (item, index) {
-                    if (item[0] === obj) {
+                    if (item.key === key) {
                         _this._value.splice(index, 1);
                         return true;
                     }
