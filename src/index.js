@@ -55,17 +55,15 @@ export default class {
             options.events = [options.events];
         }
 
-        if (isArray(options.events) && options.events.length) {
+        if (typeof options.onceEvents === 'string') {
+            options.onceEvents = options.onceEvents.split(' ');
+        }
+
+        if (isArray(options.events)) {
             options.events.forEach(type => {
                 this._callbackMap[type] = [];
                 this._onceCallbackMap[type] = new Map();
             });
-        } else {
-            throw new Error('Invalid parameter.');
-        }
-
-        if (typeof options.onceEvents === 'string') {
-            options.onceEvents = options.onceEvents.split(' ');
         }
 
         if (isArray(options.onceEvents)) {

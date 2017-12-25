@@ -1,6 +1,6 @@
 /*!
  * BaseEventObject - Base Event Object
- * @version v0.3.10
+ * @version v0.3.11
  * @author Junjie.Bai
  * @license MIT
  * 
@@ -167,17 +167,15 @@ var _class = function () {
             options.events = [options.events];
         }
 
-        if (isArray(options.events) && options.events.length) {
+        if (typeof options.onceEvents === 'string') {
+            options.onceEvents = options.onceEvents.split(' ');
+        }
+
+        if (isArray(options.events)) {
             options.events.forEach(function (type) {
                 _this._callbackMap[type] = [];
                 _this._onceCallbackMap[type] = new _Map2.default();
             });
-        } else {
-            throw new Error('Invalid parameter.');
-        }
-
-        if (typeof options.onceEvents === 'string') {
-            options.onceEvents = options.onceEvents.split(' ');
         }
 
         if (isArray(options.onceEvents)) {

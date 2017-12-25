@@ -29,9 +29,9 @@ let listener = eventObject.on('change', handle); // Add 'change' listener
 
 listener.remove(); // Remove 'change' listener
 // or
-eventObject.off('ready', handle); // Remove 'change' listener
+eventObject.off('change', handle); // Remove 'change' listener
 
-eventObject.off('ready'); // Remove all 'change' listener
+eventObject.off('change'); // Remove all 'change' listener
 eventObject.off(); // Remove all listener
 
 eventObject.emit('change', ...args); // Emit 'change' event

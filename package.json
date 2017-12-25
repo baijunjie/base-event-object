@@ -1,6 +1,6 @@
 {
   "name": "base-event-object",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "description": "Base Event Object",
   "main": "dist/BaseEventObject.js",
   "module": "src/index.js",
