@@ -1,6 +1,6 @@
 /*!
  * BaseEventObject - Base Event Object
- * @version v0.3.11
+ * @version v0.5.0
  * @author Junjie.Bai
  * @license MIT
  * 
@@ -15,7 +15,7 @@
 		exports["BaseEventObject"] = factory();
 	else
 		root["BaseEventObject"] = factory();
-})(window, function() {
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -119,10 +119,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = void 0;
+  _exports["default"] = void 0;
   _Map = _interopRequireDefault(_Map);
 
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
   function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -213,7 +213,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
       if (isArray(options.events)) {
         options.events.forEach(function (type) {
           _this._callbackMap[type] = [];
-          _this._onceCallbackMap[type] = new _Map.default();
+          _this._onceCallbackMap[type] = new _Map["default"]();
         });
       }
 
@@ -221,7 +221,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
         options.onceEvents.forEach(function (type) {
           _this._onceEvents[type] = null;
           _this._callbackMap[type] = [];
-          _this._onceCallbackMap[type] = new _Map.default();
+          _this._onceCallbackMap[type] = new _Map["default"]();
         });
       }
     }
@@ -326,7 +326,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
           if (remove) {
             remove();
-            onceCallbackMap.delete(cb);
+            onceCallbackMap["delete"](cb);
           }
         });
       }
@@ -335,7 +335,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return _default;
   }();
 
-  _exports.default = _default;
+  _exports["default"] = _default;
   ;
 
   function _on(type, callback) {
@@ -375,10 +375,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     var callbackMap;
 
     if (typeStr === 'undefined') {
-      var _arr = Object.values(this._callbackMap);
-
-      for (var _i = 0; _i < _arr.length; _i++) {
-        var callbackArray = _arr[_i];
+      for (var _i = 0, _Object$values = Object.values(this._callbackMap); _i < _Object$values.length; _i++) {
+        var callbackArray = _Object$values[_i];
         callbackArray.length = 0;
       }
 
@@ -403,10 +401,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
     var index;
 
-    var _arr2 = Object.values(callbackMap);
-
-    for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-      var _callbackArray = _arr2[_i2];
+    for (var _i2 = 0, _Object$values2 = Object.values(callbackMap); _i2 < _Object$values2.length; _i2++) {
+      var _callbackArray = _Object$values2[_i2];
       index = _callbackArray.indexOf(callback);
 
       if (index >= 0) {
@@ -439,7 +435,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   Object.defineProperty(_exports, "__esModule", {
     value: true
   });
-  _exports.default = void 0;
+  _exports["default"] = void 0;
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -514,7 +510,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
     return _default;
   }();
 
-  _exports.default = _default;
+  _exports["default"] = _default;
   ;
   module.exports = exports.default;
 });

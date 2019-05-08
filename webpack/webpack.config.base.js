@@ -10,7 +10,8 @@ module.exports = {
     output: {
         filename: '[name].js',
         library: '[name]',
-        libraryTarget: 'umd'
+        libraryTarget: 'umd',
+        globalObject: 'this'
     },
     module: {
         rules: [{
